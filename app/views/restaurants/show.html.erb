@@ -1,0 +1,39 @@
+<%= link_to edit_restaurant_path(@restaurant.id), class: 'pull-right btn btn-default' do %>
+  <i class="fa fa-pencil"></i> Edit this restaurant
+<% end %>
+
+<h2 class="well"><%= @restaurant.name %></h2>
+
+<% @reviews.each do |review| %>
+  <!-- <p class="well"><%= review.content %></p> -->
+  <div class="notification">
+    <div class="notification-content">
+      <p><small><%= review.rating %></small></p>
+      <p><%= review.content %></p>
+    </div>
+
+    <div class="notification-actions">
+      <a href="#">Edit <i class="fas fa-pencil-alt"></i></a>
+      <a href="#">Delete <i class="far fa-trash-alt"></i></a>
+    </div>
+  </div>
+<% end %>
+
+<%= form_for [ @restaurant, @review ] do |f| %>
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= f.text_area :content, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :rating %>
+    <%= f.number_field :rating, class: 'form-control' %>
+  </div>
+
+  <%= f.submit class: 'btn btn-primary' %>
+<% end %>
+
+<hr>
+<%= link_to restaurants_path do %>
+  <i class="fa fa-history"></i> Back to list
+<% end %>

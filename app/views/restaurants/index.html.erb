@@ -1,0 +1,19 @@
+<h1>Restaurants</h1>
+
+<ul id="tasks">
+  <% @restaurants.each do |restaurant| %>
+    <li>
+      <%= link_to restaurant.name, restaurant_path(restaurant.id) %>
+
+      <%= link_to restaurant_path(restaurant.id), method: :delete, data: { confirm: "Delete #{restaurant.name}?" } do %>
+        <i class="fa fa-trash-o" aria-hidden="false"></i>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<hr>
+
+<%= link_to new_restaurant_path do %>
+  <i class="fa fa-plus"></i> Add a new restaurant
+<% end %>
